@@ -239,6 +239,7 @@ The pretrained models is covered by Creative Commons BY-NC 4.0 license by NAVER 
 You can use, copy, tranform and build upon the material for non-commercial purposes as long as you give appropriate credit by citing our paper, and indicate if changes were made.
 
 ## Citation
+If you find this work useful for your research, please cite our paper:
 ```
 @article{baek2020tunit,
   title={Rethinking the Truly Unsupervised Image-to-Image Translation},
@@ -246,5 +247,4 @@ You can use, copy, tranform and build upon the material for non-commercial purpo
   journal={arXiv preprint arXiv:2006.06500},
   year={2020}
 }
-
 ```
