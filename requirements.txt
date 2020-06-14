@@ -1,0 +1,7 @@
+torch==1.1.0
+tqdm
+opencv-python
+scipy
+matplotlib
+pillow
+tensorboardX
