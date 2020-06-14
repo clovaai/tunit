@@ -4,7 +4,7 @@
 
 __Official pytorch implementation of "Rethinking the Truly Unsupervised Image-to-Image Translation"__
 
-> __[Rethinking the Truly Unsupervised Image-to-Image Translation](https://arxiv.org/pdf/2006.06500.pdf)__   
+> __[Rethinking the Truly Unsupervised Image-to-Image Translation](https://arxiv.org/abs/2006.06500)__   
 > Kyungjune Baek<sup>1</sup>*, Yunjey Choi<sup>2</sup>, Youngjung Uh<sup>2</sup>, Jaejun Yoo<sup>3</sup>, Hyunjung Shim<sup>1</sup>  
 > \* Work done during his internship at Clova AI Research  
 > <sup>1</sup> Yonsei University  
