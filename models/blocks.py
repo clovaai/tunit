@@ -11,19 +11,19 @@ from torch import nn
 class ResBlocks(nn.Module):
     def __init__(self, num_blocks, dim, norm, act, pad_type, use_sn=False):
         super(ResBlocks, self).__init__()
-        self.blocks = nn.ModuleList()
+        self.model = nn.ModuleList()
         for i in range(num_blocks):
-            self.blocks.append(ResBlock(dim, norm=norm, act=act, pad_type=pad_type, use_sn=use_sn))
-        self.blocks = nn.Sequential(*self.blocks)
+            self.model.append(ResBlock(dim, norm=norm, act=act, pad_type=pad_type, use_sn=use_sn))
+        self.model = nn.Sequential(*self.model)
 
     def forward(self, x):
-        return self.blocks(x)
+        return self.model(x)
 
 
 class ResBlock(nn.Module):
     def __init__(self, dim, norm='in', act='relu', pad_type='zero', use_sn=False):
         super(ResBlock, self).__init__()
-        self.block = nn.Sequential(Conv2dBlock(dim, dim, 3, 1, 1,
+        self.model = nn.Sequential(Conv2dBlock(dim, dim, 3, 1, 1,
                                                norm=norm,
                                                act=act,
                                                pad_type=pad_type, use_sn=use_sn),
@@ -34,7 +34,7 @@ class ResBlock(nn.Module):
 
     def forward(self, x):
         x_org = x
-        residual = self.block(x)
+        residual = self.model(x)
         out = x_org + 0.1 * residual
         return out
 
