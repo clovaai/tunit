@@ -44,10 +44,10 @@ class Generator(nn.Module):
 
         self.apply(weights_init('kaiming'))
 
-    def forward(self, x_cnt, x_sty): 
-        print("FORWARD of GENERATOR is not implemented")
-        exit(-6)
-        return None
+    def forward(self, x_src, s_ref):
+        c_src = self.cnt_encoder(x_src)
+        x_out = self.decode(c_src, s_ref)
+        return x_out
 
     def decode(self, cnt, sty):
         adapt_params = self.mlp(sty)
