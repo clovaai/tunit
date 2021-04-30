@@ -48,6 +48,14 @@ Project
              |--- n02085620
              |--- n02085782
              |--- ...
+       |--- ffhq
+             |--- images
+                    |--- 000001.jpg
+                    |--- ...
+       |--- lsun_car
+             |--- images
+                    |--- 000001.jpg
+                    |--- ...
 
 Then, call --data_path='../data'
 ```
