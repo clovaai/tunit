@@ -1,17 +1,17 @@
-## Rethinking the Truly Unsupervised Image-to-Image Translation
+## Rethinking the Truly Unsupervised Image-to-Image Translation (ICCV 2021)
 ![teaser](./resrc/teaser_3row.png)
 > **_Each image is generated with the source image in the left and the average style vector of each cluster. The network is trained under fully unsupervised manner._**
 
 __Official pytorch implementation of "Rethinking the Truly Unsupervised Image-to-Image Translation"__
 
 > __[Rethinking the Truly Unsupervised Image-to-Image Translation](https://arxiv.org/abs/2006.06500)__   
-> Kyungjune Baek<sup>1</sup>*, Yunjey Choi<sup>2</sup>, Youngjung Uh<sup>2</sup>, Jaejun Yoo<sup>3</sup>, Hyunjung Shim<sup>1</sup>  
+> Kyungjune Baek<sup>1</sup>*, Yunjey Choi<sup>2</sup>, Youngjung Uh<sup>1</sup>, Jaejun Yoo<sup>3</sup>, Hyunjung Shim<sup>1</sup>  
 > \* Work done during his internship at Clova AI Research  
 > <sup>1</sup> Yonsei University  
-> <sup>2</sup> Clova AI Research, NAVER Corp.   
-> <sup>3</sup> EPFL   
+> <sup>2</sup> NAVER AI Lab.  
+> <sup>3</sup> UNIST   
 >  
-> __Absract__ _Every recent image-to-image translation model uses either image-level (_i.e._ input-output pairs) or set-level (_i.e._ domain labels) supervision at minimum. However, even the set-level supervision can be a serious bottleneck for data collection in practice. In this paper, we tackle image-to-image translation in a fully unsupervised setting, _i.e.,_ neither paired images nor domain labels. To this end, we propose the truly unsupervised image-to-image translation(TUNIT) that simultaneously learns to separate image domains via an information-theoretic approach and generate corresponding images using the estimated domain labels. Experimental results on various datasets show that the proposed method successfully separates domains and translates images across those domains. Our model outperforms existing set-level supervised methods under a semi-supervised setting, where a subset of domain labels is provided._
+> __Absract__ _Every recent image-to-image translation model inherently requires either image-level (i.e. input-output pairs) or set-level (i.e. domain labels) supervision. However, even set-level supervision can be a severe bottleneck for data collection in practice. In this paper, we tackle image-to-image translation in a fully unsupervised setting, i.e., neither paired images nor domain labels. To this end, we propose a truly unsupervised image-to-image translation model (TUNIT) that simultaneously learns to separate image domains and translates input images into the estimated domains. Experimental results show that our model achieves comparable or even better performance than the set-level supervised model trained with full labels, generalizes well on various datasets, and is robust against the choice of hyperparameters (e.g. the preset number of pseudo domains). Furthermore, TUNIT can be easily extended to semi-supervised learning with a few labeled data._
 
 ### Requirement 
 __Library__
