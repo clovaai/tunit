@@ -92,7 +92,8 @@ __Actual example__
 ```
 Train
 python main.py --gpu 0 --dataset animal_faces --output_k 10 --data_path '../data' --p_semi 0.0
-python main.py --gpu 0 --dataset afhq_cat --output_k 10 --data_path '../data' --p_semi 0.2
+python main.py --gpu 0 --dataset animal_faces --output_k 10 --data_path '../data' --p_semi 0.2
+python main.py --gpu 0 --dataset afhq_cat --output_k 10 --data_path '../data' --p_semi 0.0
 python main.py --gpu 1 --dataset animal_faces --data_path '../data' --p_semi 1.0
 python main.py --gpu 0,1 --dataset summer2winter --output_k 2 --data_path '../data' --p_semi 0.0 --img_size 256 --batch_size 16 --ddp
 
