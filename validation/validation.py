@@ -40,7 +40,7 @@ def validateUN(data_loader, networks, epoch, args, additional=None):
     C_EMA.eval()
     G_EMA.eval()
     # data loader
-    val_dataset = data_loader['TRAINSET'] if args.dataset in ['animal_faces', 'lsun_car', 'ffhq'] else data_loader['VALSET']
+    val_dataset = data_loader['TRAINSET'] if args.dataset in ['animal_faces', 'food-10', 'lsun_car', 'ffhq'] else data_loader['VALSET']
     val_loader = data_loader['VAL']
 
     # Calculate Acc. of Classifier
@@ -51,7 +51,7 @@ def validateUN(data_loader, networks, epoch, args, additional=None):
     
     # Parse images for average reference vector
     x_each_cls = []
-    if args.dataset == 'animal_faces':
+    if args.dataset in ['animal_faces', 'food-10']:
         num_tmp_val = -50
     elif args.dataset == 'ffhq':
         num_tmp_val = -7000
@@ -165,7 +165,7 @@ def validateUN(data_loader, networks, epoch, args, additional=None):
 def calcFIDBatch(args, data_loader, networks, model='NONE', train_dataset=None):
     # Set non-shuffle train loader + extract class-wise images
     trainset = train_dataset['FULL']
-    val_dataset = data_loader['VAL']['TRAINSET'] if args.dataset == 'animal_faces' else data_loader['VAL']['VALSET']
+    val_dataset = data_loader['VAL']['TRAINSET'] if args.dataset in ['animal_faces', 'food-10'] else data_loader['VAL']['VALSET']
 
     if model == 'EMA':
         G = networks['G_EMA'] if not args.distributed else networks['G_EMA'].module
@@ -216,7 +216,7 @@ def calcFIDBatch(args, data_loader, networks, model='NONE', train_dataset=None):
 
         val_tot_tars = torch.tensor(val_dataset.targets)
         for cls_idx in range(len(args.att_to_use)):
-            num_tmp_val = -50 if args.dataset == 'animal_faces' else 0
+            num_tmp_val = -50 if args.dataset in ['animal_faces', 'food-10'] else 0
             tmp_cls_set = (val_tot_tars == args.att_to_use[cls_idx]).nonzero()[num_tmp_val:]
             tmp_ds = torch.utils.data.Subset(val_dataset, tmp_cls_set)
             tmp_dl = torch.utils.data.DataLoader(tmp_ds, batch_size=50, shuffle=False,
@@ -241,7 +241,7 @@ def calcFIDBatch(args, data_loader, networks, model='NONE', train_dataset=None):
 
             tot_targets = torch.tensor(trainset.targets)
             tmp_sub_idx = (tot_targets == args.att_to_use[idx_cls]).nonzero()
-            num_train_to_use = -50 if args.dataset == 'animal_faces' else num_target_dataset
+            num_train_to_use = -50 if args.dataset in ['animal_faces', 'food-10'] else num_target_dataset
             train_to_use = tmp_sub_idx[:num_train_to_use]
 
             tmp_dataset = torch.utils.data.Subset(trainset, train_to_use)

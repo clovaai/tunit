@@ -32,16 +32,29 @@ def get_dataset(dataset, args):
 
     normalize = transforms.Normalize(mean=mean, std=std)
 
-    transform = DuplicatedCompose([transforms.Resize((args.img_size, args.img_size)),
-                                   transforms.RandomHorizontalFlip(),
-                                   transforms.ToTensor(),
-                                   normalize],
-                                  [transforms.RandomAffine(20, translate=(0.1, 0.1), shear=10),
-                                   transforms.RandomResizedCrop(args.img_size, scale=(0.9, 1.1),
-                                                                ratio=(0.9, 1.1), interpolation=2),
-                                   transforms.ColorJitter(0.4, 0.4, 0.4, 0.125),
-                                   transforms.RandomHorizontalFlip(),
-                                   transforms.ToTensor(), normalize])
+    if args.dataset.lower() == 'food-10':
+        transform = DuplicatedCompose([transforms.Resize((args.img_size, args.img_size)),
+                                       transforms.RandomHorizontalFlip(),
+                                       transforms.ToTensor(),
+                                       normalize],
+                                      [transforms.RandomHorizontalFlip(),
+                                       transforms.RandomResizedCrop(args.img_size, scale=(0.9, 1.1),
+                                                                    ratio=(0.9, 1.1), interpolation=2),
+                                       Augment(),
+                                       transforms.ToTensor(),
+                                       normalize,
+                                       ])
+    else:
+        transform = DuplicatedCompose([transforms.Resize((args.img_size, args.img_size)),
+                                       transforms.RandomHorizontalFlip(),
+                                       transforms.ToTensor(),
+                                       normalize],
+                                      [transforms.RandomAffine(20, translate=(0.1, 0.1), shear=10),
+                                       transforms.RandomResizedCrop(args.img_size, scale=(0.9, 1.1),
+                                                                    ratio=(0.9, 1.1), interpolation=2),
+                                       transforms.ColorJitter(0.4, 0.4, 0.4, 0.125),
+                                       transforms.RandomHorizontalFlip(),
+                                       transforms.ToTensor(), normalize])
 
     transform_val = DuplicatedCompose([transforms.Resize((args.img_size, args.img_size)),
                                        transforms.ToTensor(),
@@ -111,11 +124,14 @@ def get_dataset(dataset, args):
         train_dataset = {'TRAIN': train_dataset_, 'FULL': train_dataset, 'IDX': train_with_idx}
         val_dataset = {'VAL': val_dataset_, 'FULL': val_dataset}
 
-    elif dataset.lower() == 'animal_faces':
-        print('USE Animals ImageNet Subset dataset [WITH IIC]')
+    elif dataset.lower() in ['animal_faces', 'food-10']:
+        print('USE Animals ImageNet Subset / FOOD-10 dataset')
         print("LABEL MAP:", remap_table)
 
-        img_dir = os.path.join(args.data_dir, 'animal_faces')
+        if args.dataset.lower() == 'animal_faces':
+            img_dir = os.path.join(args.data_dir, dataset.lower())
+        else:
+            img_dir = os.path.join(args.data_dir, 'train', dataset.lower(), 'images')
 
         # divide into training and validation set
         # divide into labeled and unlabeled set

@@ -40,7 +40,7 @@ from tensorboardX import SummaryWriter
 # Configuration
 parser = argparse.ArgumentParser(description='PyTorch GAN Training')
 parser.add_argument('--dataset', default='animal_faces', help='Dataset name to use',
-                    choices=['afhq_cat', 'afhq_dog', 'afhq_wild', 'animal_faces', 'photo2ukiyoe', 'summer2winter', 'lsun_car', 'ffhq'])
+                    choices=['afhq_cat', 'afhq_dog', 'afhq_wild', 'food-10', 'animal_faces', 'photo2ukiyoe', 'summer2winter', 'lsun_car', 'ffhq'])
 parser.add_argument('--data_path', type=str, default='../data',
                     help='Dataset directory. Please refer Dataset in README.md')
 parser.add_argument('--workers', default=4, type=int, help='the number of workers of data loader')
@@ -225,6 +225,8 @@ def main_worker(gpu, ngpus_per_node, args):
     # Classes to use
     if args.dataset == 'animal_faces':
         args.att_to_use = [11, 43, 56, 74, 89, 128, 130, 138, 140, 141]
+    elif args.dataset == 'food-10':
+        args.att_to_use = [i for i in range(10)]
     elif args.dataset == 'afhq_cat':
         args.att_to_use = [0, ]
     elif args.dataset == 'afhq_dog':
@@ -322,7 +324,7 @@ def main_worker(gpu, ngpus_per_node, args):
             if (epoch + 1) % 10 == 0:
                 save_model(args, epoch, networks, opts)
             if not args.train_mode in ['CLS_UN', 'CLS_SEMI']:
-                if epoch >= args.fid_start and args.dataset not in ['ffhq', 'lsun_car']:
+                if epoch >= args.fid_start and args.dataset not in ['ffhq', 'lsun_car', 'afhq_cat', 'afhq_dog', 'afhq_wild']:
                     for idx_fid in range(len(args.att_to_use)):
                         add_logs(args, logger, 'STATEMA/G_EMA{}/FID'.format(idx_fid), fid_ema[idx_fid], epoch + 1)
                     add_logs(args, logger, 'STATEMA/G_EMA/mFID', fid_ema_mean, epoch + 1)
