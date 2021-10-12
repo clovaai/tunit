@@ -250,10 +250,12 @@ You can use, copy, tranform and build upon the material for non-commercial purpo
 ## Citation
 If you find this work useful for your research, please cite our paper:
 ```
-@article{baek2020tunit,
-  title={Rethinking the Truly Unsupervised Image-to-Image Translation},
-  author={Kyungjune Baek and Yunjey Choi and Youngjung Uh and Jaejun Yoo and Hyunjung Shim},
-  journal={arXiv preprint arXiv:2006.06500},
-  year={2020}
+@InProceedings{Baek_2021_ICCV,
+    author    = {Baek, Kyungjune and Choi, Yunjey and Uh, Youngjung and Yoo, Jaejun and Shim, Hyunjung},
+    title     = {Rethinking the Truly Unsupervised Image-to-Image Translation},
+    booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+    month     = {October},
+    year      = {2021},
+    pages     = {14154-14163}
 }
 ```
