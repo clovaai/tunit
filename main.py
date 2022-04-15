@@ -322,7 +322,7 @@ def main_worker(gpu, ngpus_per_node, args):
             if (epoch + 1) % 10 == 0:
                 save_model(args, epoch, networks, opts)
             if not args.train_mode in ['CLS_UN', 'CLS_SEMI']:
-                if epoch >= args.fid_start and args.dataset not in ['ffhq', 'lsun_car']:
+                if epoch >= args.fid_start and args.dataset not in ['ffhq', 'lsun_car', 'afhq_cat', 'afhq_dog', 'afhq_wild']:
                     for idx_fid in range(len(args.att_to_use)):
                         add_logs(args, logger, 'STATEMA/G_EMA{}/FID'.format(idx_fid), fid_ema[idx_fid], epoch + 1)
                     add_logs(args, logger, 'STATEMA/G_EMA/mFID', fid_ema_mean, epoch + 1)
