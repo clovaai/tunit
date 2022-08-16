@@ -108,8 +108,9 @@ tensorboard --logdir=./GAN_20200101_101010/events
 
 ## Pretrained Model
 ### Download
-[Google Drive](https://drive.google.com/drive/folders/1T_IBJSWu106GUn6EmSkT5rWCvv2jnv6Z)
+[One Drive](https://1drv.ms/u/s!AprVWp5MreFV8BLY22ias4Gt1ZtO?e=IYsUwX)
 * Download folders to load, then place the folder under 'logs'.
+* Links of google drive are deprecated.
 ```
 Project
 |--- tunit
